@@ -1,0 +1,8 @@
+<h1>Welcome to Our Medical Practice Management System</h1>
+
+<% if user_signed_in? %>
+  <p>You are signed in. Redirecting to your dashboard...</p>
+<% else %>
+  <p>Please sign in to access your dashboard.</p>
+  <%= link_to 'Sign In', new_user_session_path %>
+<% end %>

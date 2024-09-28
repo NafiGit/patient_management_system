@@ -1,0 +1,34 @@
+<h1>Patients#index</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <% if current_user.receptionist? %>
+        <th colspan="3">Actions</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @patients.each do |patient| %>
+      <tr>
+        <td><%= patient.name %></td>
+        <td><%= patient.age %></td>
+        <td><%= patient.gender %></td>
+        <% if current_user.receptionist? %>
+          <td><%= link_to 'Show', patient %></td>
+          <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
+          <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if current_user.receptionist? %>
+  <%= link_to 'New Patient', new_patient_path %>
+<% end %>

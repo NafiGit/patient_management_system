@@ -1,0 +1,32 @@
+<h1>Dashboards#receptionist</h1>
+
+<h2>Patient Management</h2>
+<%= link_to 'View All Patients', patients_path %>
+<%= link_to 'Register New Patient', new_patient_path %>
+
+<h2>Recent Patients</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Gender</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @patients.order(created_at: :desc).limit(5).each do |patient| %>
+      <tr>
+        <td><%= patient.name %></td>
+        <td><%= patient.age %></td>
+        <td><%= patient.gender %></td>
+        <td>
+          <%= link_to 'View', patient %>
+          <%= link_to 'Edit', edit_patient_path(patient) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<!-- Add more receptionist-specific features here -->
